@@ -146,7 +146,7 @@ class Router
         $uriArr = explode('/', $uri);
         $controllerArr = [];
         foreach ($uriArr as $uri) {
-            if (!$uri) {
+            if (!$uri || strpos($uri, '.') !== false) {
                 continue;
             }
             $arr = array_filter(explode('_', $uri));
