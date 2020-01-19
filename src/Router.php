@@ -22,7 +22,7 @@ class Router
     public function route($uri)
     {
         $this->reset();
-        $uri = trim($uri, '/');
+        $uri = trim(strtolower($uri), '/');
         if (!$uri) {
             return;
         }
