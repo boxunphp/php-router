@@ -1,5 +1,6 @@
-# php-router
-PHP路由
+# router
+
+FROM: nikic/fast-route
 
 ## Usage
 
@@ -7,29 +8,15 @@ PHP路由
 
 ```php
 $config = [
-    '/abc/:id' => '/abc',
-    '/abc/def/:id' => '/abc/def',
-    '/abc/def/:category/:id' => '/abc/category',
-];
-$router = Router::getInstance()->init($config);
-$uri = '/abc/10';
-$router->route($uri);
-```
-
-```php
-$config = [
-    'abc' => [
-        ['pattern' => '/abc/(:int)', 'keys' => ['id'], 'uri' => '/abc'],
-        ['pattern' => '/abc/def/(:int)', 'keys' => ['id'], 'uri' => '/abc/def'],
-        ['pattern' => '/abc/def/(:string)/(:int)', 'keys' => ['category', 'id'], 'uri' => '/abc/category'],
-    ],
-    'bca' => [
-        ['pattern' => '/bca/(:int)', 'keys' => ['id'], 'uri' => '/bca'],
-        ['pattern' => '/bca/def/(:int)', 'keys' => ['id'], 'uri' => '/bca/ijh'],
-        ['pattern' => '/bca/def/(:string)/(:int)', 'keys' => ['category', 'id'], 'uri' => '/bca/plk'],
-    ],
-];
-$router = Router::getInstance()->setConfig($config);
-$uri = '/abc/10';
-$router->route($uri);
+    ['method' => 'GET', 'route' => '/aaa[/{id:number}/{age}/ggg[/bbb[/ccc[/ddd]]]]', 'handler' => 'handlerA'],
+    ['group' => '/bbb', 'routes' => [
+        ['method' => 'GET', 'route' => '/uuu[/{id:number}/{age}/ggg[/bbb[/ccc[/ddd]]]]', 'handler' => 'handlerBU'],
+        ['method' => 'GET', 'route' => '/iii[/{id:number}/{age}/ggg[/bbb[/ccc[/ddd]]]]', 'handler' => 'handlerBI'],
+        ['method' => 'GET', 'route' => '/ooo[/{id:number}/{age}/ggg[/bbb[/ccc[/ddd]]]]', 'handler' => 'handlerBO'],
+    ]],
+    ['method' => 'GET', 'route' => '/ccc[/{id:number}]', 'handler' => 'handlerC'],
+]; 
+$router = new Router($config);
+$uri = '/aaa/10000/18/ggg?a=AAA&b=BBB';
+$router->dispatch($method, $uri);
 ```

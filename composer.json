@@ -14,13 +14,16 @@
     "phpunit/phpunit": "8.*"
   },
   "require": {
-    "php": "^7.2",
-    "boxunphp/php-instance": "dev-master",
-    "boxunphp/php-exception": "dev-master"
+    "php": "^7.2"
   },
   "autoload": {
     "psr-4": {
       "All\\Router\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+        "Tests\\": "tests/"
     }
   }
 }
