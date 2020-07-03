@@ -1,5 +1,5 @@
 {
-  "name": "boxunphp/php-router",
+  "name": "boxunphp/router",
   "description": "PHP路由",
   "type": "library",
   "license": "MIT",
